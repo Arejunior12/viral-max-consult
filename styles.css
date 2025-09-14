@@ -85,18 +85,18 @@ body {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  /* Use the specific signature font */
   font-family: var(--font-signature); 
   font-weight: 700;
   font-size: 1.25rem;
   color: orange;
+  position: relative; /* Ensure logo is above mobile menu when open */
+  z-index: 1001; /* Higher than nav-menu */
 }
 
 .logo-img {
   height: 40px;
   width: auto;
   border-radius: 8px;
-  /* Added a subtle shadow to logo */
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
@@ -115,6 +115,7 @@ body {
   overflow: hidden;
 }
 
+/* 1. Removed blurry background effect on navigation items */
 .nav-link::before {
   content: "";
   position: absolute;
@@ -122,7 +123,8 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent);
+  /* background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent); */
+  background: transparent; /* Removed the gradient */
   transition: left 0.5s;
 }
 
@@ -155,6 +157,9 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
+  /* Added for mobile positioning */
+  position: relative;
+  z-index: 1001; /* Ensure controls are above mobile menu */
 }
 
 .theme-toggle {
@@ -169,7 +174,6 @@ body {
   cursor: pointer;
   color: var(--text-primary);
   transition: var(--transition-fast);
-  /* Added shadow and background to toggle button */
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   background: var(--surface);
 }
@@ -187,15 +191,15 @@ body {
     font-size: 1.2rem;
 }
 
+/* 4. Corrected hamburger and theme toggle overlapping */
 .hamburger {
-  display: none;
+  display: none; /* Hidden on desktop */
   flex-direction: column;
   cursor: pointer;
   gap: 4px;
-  position: fixed; /* Changed to fixed positioning */
-  top: 20px; /* Adjust as needed */
-  right: 20px; /* Position on the right side */
-  z-index: 1000; /* Ensure it's above other content */
+  /* Removed fixed positioning, let it flow with nav-controls */
+  /* This will be managed by flexbox within .nav-controls */
+  z-index: 1000;
 }
 
 .bar {
@@ -252,7 +256,6 @@ body {
     margin: 0 auto;
     padding: 2rem;
     color: white;
-    /* Animation removed from here, handled by JS 'reveal' */
 }
 
 .hero-text {
@@ -264,13 +267,13 @@ body {
 .hero-image {
     flex: 1;
     text-align: center;
-    /* Added initial transform for the parallax effect */
-    transform: translateY(0);
+    transform: translateY(0); /* For parallax, keep this */
 }
 
+/* Corrected hero image sizing */
 .hero-img {
-    width: 200%;
-    max-width: 600px;
+    width: 100%; /* Make it fill its container */
+    max-width: 600px; /* But don't let it grow too large on desktop */
     height: auto;
     border-radius: 20px;
     object-fit: cover;
@@ -324,6 +327,8 @@ body {
     text-decoration: none;
     position: relative;
     overflow: hidden;
+    /* Added subtle text shadow for buttons */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 .btn::before {
@@ -416,16 +421,36 @@ body {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+    /* 3. Home image on mobile (portrait) */
     .hero-content {
         flex-direction: column;
         text-align: center;
+        padding-top: 5rem; /* More space for fixed header */
+        padding-bottom: 5rem;
     }
     
     .hero-text {
         padding-right: 0;
-        margin-bottom: 2rem;
+        margin-bottom: 2rem; /* Move margin to top of text from bottom of image */
+        order: 1; /* Place text after image */
     }
     
+    .hero-image {
+        order: 0; /* Place image before text content */
+        margin-bottom: 2rem; /* Spacing below image */
+        width: 90%; /* Constrain width for better look */
+        max-width: 400px; /* Ensure it doesn't get too big */
+        margin-left: auto; /* Center image */
+        margin-right: auto; /* Center image */
+        transform: translateY(0) !important; /* Disable parallax on mobile */
+    }
+    
+    .hero-img {
+        width: 100%; /* Ensure it fills its new constrained parent */
+        height: auto; /* Maintain aspect ratio */
+        max-width: none; /* Override desktop max-width if it's too restrictive for new mobile width */
+    }
+
     .hero-title {
         font-size: 2.5rem;
         text-align: center;
@@ -434,11 +459,6 @@ body {
     .hero-subtitle {
         font-size: 1.2rem;
         text-align: center;
-    }
-    
-    .hero-img {
-        width: 200px;
-        height: 300px;
     }
     
     .btn {
@@ -464,6 +484,8 @@ body {
   padding: 1rem 0;
   overflow: hidden;
   position: relative;
+  /* Added some subtle shadow for depth */
+  box-shadow: inset 0 5px 10px rgba(0,0,0,0.1), inset 0 -5px 10px rgba(0,0,0,0.1);
 }
 
 .marquee-container::before,
@@ -514,7 +536,7 @@ section {
 .section-header {
   text-align: center;
   margin-bottom: 4rem;
-  position: relative; /* Added for ::after styling */
+  position: relative;
 }
 
 /* Enhanced section title with a subtle underline effect */
@@ -523,22 +545,22 @@ section {
   font-weight: 700;
   margin-bottom: 1rem;
   color: var(--text-primary);
-  display: inline-block; /* Allows ::after to position relative to text */
+  display: inline-block;
   position: relative;
 }
 .section-title::after {
     content: '';
     display: block;
-    width: 60px; /* Width of the underline */
-    height: 4px; /* Thickness of the underline */
+    width: 60px;
+    height: 4px;
     background: var(--primary-color);
-    margin: 10px auto 0; /* Center it below the title */
+    margin: 10px auto 0;
     border-radius: 2px;
-    transform: scaleX(0); /* Start hidden */
+    transform: scaleX(0);
     transition: transform 0.4s ease-out;
 }
 .section-header:hover .section-title::after {
-    transform: scaleX(1); /* Expand on hover */
+    transform: scaleX(1);
 }
 
 
@@ -615,7 +637,6 @@ section {
   font-size: 2.5rem;
   color: var(--primary-color);
   margin-bottom: 1rem;
-  /* Added a subtle pulsating animation on icon hover */
   transition: transform 0.3s ease;
 }
 .feature-card:hover i {
@@ -653,7 +674,6 @@ section {
   max-width: 500px;
   margin: 0 auto;
 }
-/* Subtle hover glow for service card */
 .service-card:hover {
     box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
     transform: translateY(-5px);
@@ -725,7 +745,7 @@ section {
 
 .service-content.expanded {
   padding: 2rem;
-  max-height: 1000px; /* Sufficiently large value */
+  max-height: 1000px;
 }
 
 .service-content p {
@@ -751,8 +771,8 @@ section {
   max-width: 400px;
 }
 .service-item:hover {
-    background: var(--accent-color); /* Change background on hover */
-    color: white; /* Text color change */
+    background: var(--accent-color);
+    color: white;
     transform: translateY(-3px);
     box-shadow: 0 8px 15px rgba(37, 99, 235, 0.2);
 }
@@ -765,7 +785,7 @@ section {
 }
 
 .service-item:hover i {
-  color: white; /* Icon color change on hover */
+  color: white;
 }
 
 .service-item h4 {
@@ -866,7 +886,6 @@ section {
   height: 60px;
   border-radius: 50%;
   object-fit: cover;
-  /* Added border for profile pics */
   border: 2px solid var(--primary-color);
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -1018,9 +1037,9 @@ section {
 /* Footer */
 .footer {
   background: var(--text-primary);
-  color: rgba(5, 5, 5, 0.8); /* Adjusted for better contrast on dark footer */
-  font-weight: bold;
+  color: rgba(10, 10, 10, 0.8);
   padding: 3rem 0 1rem;
+  font-weight: bold;
 }
 
 .footer-content {
@@ -1034,10 +1053,10 @@ section {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-family: var(--font-logo); /* Use signature font for footer logo too */
-  font-weight: 1000;
-  font-size: 1.5rem;
+  font-family: var(--font-logo);
   color: chocolate;
+  font-weight: 700;
+  font-size: 1.25rem;
   margin-bottom: 1rem;
 }
 
@@ -1066,7 +1085,7 @@ section {
 }
 
 .footer-section ul li a {
-  color: rgba(15, 15, 15, 0.8);
+  color: rgba(10, 10, 10, 0.8);
   font-weight: bold;
   text-decoration: none;
   transition: var(--transition-fast);
@@ -1167,39 +1186,60 @@ section {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  /* 2. Mobile navigation as a side menu */
   .nav-menu {
     position: fixed;
-    left: -100%;
-    top: 70px;
+    right: -75%; /* Start off-screen to the right */
+    top: 0; /* Align with top of viewport */
     flex-direction: column;
     background-color: var(--background);
-    width: 100%;
-    text-align: center;
-    transition: 0.3s;
-    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-    padding: 2rem 0;
-    border-top: 1px solid var(--border);
+    width: 75%; /* Take 75% of screen width */
+    max-width: 300px; /* Optional: cap maximum width */
+    height: 100vh; /* Full viewport height */
+    text-align: left; /* Align text within the side menu */
+    transition: right 0.3s ease-in-out; /* Slide in/out animation */
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    padding: 70px 2rem 2rem; /* Padding to clear fixed navbar + general padding */
+    border-left: 1px solid var(--border); /* A subtle border */
+    gap: 1.5rem; /* Space out links more */
   }
 
   .nav-menu.active {
-    left: 0;
+    right: 0; /* Slide in */
   }
 
+  .nav-menu .nav-item {
+    width: 100%; /* Make list items take full width */
+  }
+
+  .nav-menu .nav-link {
+    display: block; /* Make links block level */
+    padding: 0.75rem 0; /* Add padding for easier tapping */
+    border-radius: 5px;
+  }
+  .nav-menu .nav-link::after {
+      left: 50%;
+      transform: translateX(-50%);
+  }
+  .nav-menu .nav-link:hover::after,
+  .nav-menu .nav-link.active::after {
+      width: 80%; /* Shorter underline for mobile links */
+  }
+
+
+  /* 4. Corrected hamburger and theme toggle overlapping */
   .hamburger {
-    display: flex;
+    display: flex; /* Show hamburger on mobile */
+    /* No fixed positioning, it's now part of .nav-controls */
   }
+  /* On mobile, ensure theme toggle button is also visible and correctly spaced */
+  .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+  }
+  /* This ensures both elements within nav-controls are side-by-side */
 
-  .hamburger.active .bar:nth-child(2) {
-    opacity: 0;
-  }
-
-  .hamburger.active .bar:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
-
-  .hamburger.active .bar:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-  }
 
   /* Hero animations are managed by JS reveal */
 

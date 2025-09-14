@@ -31,7 +31,8 @@ themeToggle.addEventListener("click", () => {
 const hamburger = document.getElementById("hamburger");
 const navMenu = document.getElementById("nav-menu");
 
-hamburger.addEventListener("click", () => {
+hamburger.addEventListener("click", (event) => {
+  event.stopPropagation(); // Prevent click from closing immediately if it propagates to document
   hamburger.classList.toggle("active");
   navMenu.classList.toggle("active");
 });
@@ -46,7 +47,8 @@ document.querySelectorAll(".nav-link").forEach((link) => {
 
 // Close mobile menu when clicking outside
 document.addEventListener("click", (e) => {
-  if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+  // Ensure the menu is open, and click is not on hamburger or inside nav menu
+  if (navMenu.classList.contains("active") && !hamburger.contains(e.target) && !navMenu.contains(e.target)) {
     hamburger.classList.remove("active");
     navMenu.classList.remove("active");
   }
@@ -79,7 +81,7 @@ function updateActiveNavLink() {
 
   navLinks.forEach((link) => {
     link.classList.remove("active");
-    if (link.getAttribute("href") && link.getAttribute("href").includes(current)) { // Check for hash in href
+    if (link.getAttribute("href") && link.getAttribute("href").includes(current)) {
       link.classList.add("active");
     }
   });
@@ -134,29 +136,27 @@ function toggleService(button) {
 const contactForm = document.getElementById("contactForm");
 
 if (contactForm) {
-    contactForm.addEventListener("submit", async (e) => { // Changed to async to handle fetch
+    contactForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         // Get form data
         const formData = new FormData(contactForm);
         const data = Object.fromEntries(formData);
 
-        // Simple form validation - relying more on enhanceFormValidation
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        const originalButtonContent = submitButton.innerHTML;
+        const spinnerIcon = '<i class="fas fa-spinner fa-spin"></i>';
+
+        // Basic validation before submission
         if (!data.name || !data.email || !data.service || !data.message) {
             alert("Please fill in all required fields.");
             return;
         }
-
-        // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(data.email)) {
             alert("Please enter a valid email address.");
             return;
         }
-
-        const submitButton = contactForm.querySelector('button[type="submit"]');
-        const originalButtonContent = submitButton.innerHTML; // Store original content
-        const spinnerIcon = '<i class="fas fa-spinner fa-spin"></i>'; // Font Awesome spinner
 
         submitButton.innerHTML = `${spinnerIcon} Sending...`;
         submitButton.disabled = true;
@@ -184,7 +184,7 @@ if (contactForm) {
         } catch (error) {
             alert("Network error: " + error.message);
         } finally {
-            submitButton.innerHTML = originalButtonContent; // Restore original content
+            submitButton.innerHTML = originalButtonContent;
             submitButton.disabled = false;
         }
     });
@@ -221,10 +221,9 @@ window.addEventListener("scroll", () => {
 // Initialize on page load
 document.addEventListener("DOMContentLoaded", () => {
   updateActiveNavLink();
-  handleNavbarScroll(); // Call once on load to set initial state
+  handleNavbarScroll();
   toggleBackToTopButton();
 
-  // Add smooth scroll to all anchor links
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
@@ -238,7 +237,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Initialize new enhancements
   initScrollReveal();
   initParallax();
   // initTypingEffect(); // Uncomment if you want typing effect
@@ -248,19 +246,17 @@ document.addEventListener("DOMContentLoaded", () => {
   animateCounters();
   initMobileGestures();
 
-  // Add a general class to indicate everything is loaded, mainly for fade-in effect on body
   document.body.classList.add("loaded");
 });
 
 // Enhanced scroll reveal animation
 function initScrollReveal() {
-  const revealElements = document.querySelectorAll(".feature-card, .service-card, .testimonial-card, .section-header, .hero-content"); // Added hero-content
+  const revealElements = document.querySelectorAll(".feature-card, .service-card, .testimonial-card, .section-header, .hero-content");
 
   const revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-          // Add a small delay for staggered effect
           setTimeout(() => {
             entry.target.classList.add("revealed");
           }, index * 100);
@@ -282,18 +278,22 @@ function initScrollReveal() {
 // Parallax effect for hero section
 function initParallax() {
   const heroBackground = document.querySelector(".hero-background");
-  const heroImage = document.querySelector(".hero-image"); // New: for hero image parallax
+  const heroImage = document.querySelector(".hero-image");
 
   window.addEventListener("scroll", () => {
     const scrolled = window.pageYOffset;
     const rate = scrolled * -0.5;
-    const imgRate = scrolled * 0.2; // Opposite direction for hero image for a layered effect
+    const imgRate = scrolled * 0.2;
 
     if (heroBackground) {
       heroBackground.style.transform = `translateY(${rate}px)`;
     }
-    if (heroImage) {
+    // Only apply hero image parallax on larger screens
+    if (heroImage && window.innerWidth > 768) {
         heroImage.style.transform = `translateY(${imgRate}px)`;
+    } else if (heroImage) {
+        // Reset transform on mobile to avoid conflicts with CSS order/centering
+        heroImage.style.transform = `translateY(0px)`;
     }
   });
 }
@@ -301,7 +301,7 @@ function initParallax() {
 // Enhanced typing effect for hero title
 function initTypingEffect() {
   const heroTitle = document.querySelector(".hero-title");
-  if (!heroTitle) return; // Exit if element not found
+  if (!heroTitle) return;
 
   const text = heroTitle.textContent;
   heroTitle.textContent = "";
@@ -315,7 +315,6 @@ function initTypingEffect() {
     }
   };
 
-  // Start typing effect after page load
   setTimeout(typeWriter, 1000);
 }
 
@@ -335,15 +334,13 @@ function enhanceFormValidation() {
     const field = e.target;
     const value = field.value.trim();
 
-    field.classList.remove("error"); // Always remove error class first
+    field.classList.remove("error");
 
-    // Remove existing error message div if any
     const existingErrorDiv = field.parentNode.querySelector(".error-message");
     if (existingErrorDiv) {
       existingErrorDiv.remove();
     }
 
-    // Validate based on field type
     if (field.hasAttribute("required") && !value) {
       showFieldError(field, "This field is required.");
     } else if (field.type === "email" && value) {
@@ -352,13 +349,11 @@ function enhanceFormValidation() {
         showFieldError(field, "Please enter a valid email address.");
       }
     } else if (field.type === "tel" && value) {
-      // Basic phone number validation (can be more robust)
-      const phoneRegex = /^[+]?[\d\s()-]{7,20}$/; // Allows for common phone characters
+      const phoneRegex = /^[+]?[\d\s()-]{7,20}$/;
       if (!phoneRegex.test(value)) {
         showFieldError(field, "Please enter a valid phone number.");
       }
     }
-    // No specific validation for 'select' beyond 'required' (which is handled)
   }
 
   function showFieldError(field, message) {
@@ -382,22 +377,18 @@ function enhanceFormValidation() {
 // Add floating animation to hero image (if desired)
 function initFloatingAnimation() {
   const heroImg = document.querySelector(".hero-img");
-  if (heroImg) {
+  if (heroImg && window.innerWidth > 768) { // Only apply on desktop
     let mouseX = 0;
     let mouseY = 0;
 
-    // Apply a subtle float animation if not using mousemove parallax
-    if (!document.querySelector(".hero-image")) { // If no outer container for parallax
-        heroImg.style.animation = 'float 3s ease-in-out infinite';
-    } else {
-        // Combined with existing mousemove for more subtle effect
-        document.addEventListener("mousemove", (e) => {
-            mouseX = (e.clientX / window.innerWidth - 0.5) * 2; // -1 to 1 range
-            mouseY = (e.clientY / window.innerHeight - 0.5) * 2; // -1 to 1 range
+    document.addEventListener("mousemove", (e) => {
+      mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+      mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
 
-            heroImg.style.transform = `translate(${mouseX * 10}px, ${mouseY * 10}px)`; // Subtle movement
-        });
-    }
+      heroImg.style.transform = `translate(${mouseX * 10}px, ${mouseY * 10}px)`;
+    });
+  } else if (heroImg) { // Reset on mobile
+      heroImg.style.transform = `translateY(0px)`; // Ensure no residual transform
   }
 }
 
@@ -468,9 +459,9 @@ function initMobileGestures() {
     const diffY = startY - endY;
 
     // Only consider horizontal swipes that start near the top (e.g., within navbar height)
-    if (Math.abs(diffY) < 50 && startY < (navbarHeight + 50)) { // swipe near top
+    if (Math.abs(diffY) < 50 && startY < (navbarHeight + 50)) {
       // Swipe right to open menu
-      if (diffX < -50) {
+      if (diffX < -50 && diffX > -300) { // Added a max swipe distance check
         if (window.innerWidth <= 768 && !navMenu.classList.contains("active")) {
           navMenu.classList.add("active");
           hamburger.classList.add("active");
@@ -478,7 +469,7 @@ function initMobileGestures() {
       }
 
       // Swipe left to close menu
-      if (diffX > 50) {
+      if (diffX > 50 && diffX < 300) { // Added a max swipe distance check
         if (window.innerWidth <= 768 && navMenu.classList.contains("active")) {
           navMenu.classList.remove("active");
           hamburger.classList.remove("active");
@@ -493,31 +484,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const marqueeContent = document.querySelector(".marquee-content");
   if (marqueeContent) {
     const marqueeItems = marqueeContent.innerHTML;
-    // Duplicate content twice to ensure continuous loop without gaps
     marqueeContent.innerHTML = marqueeItems + marqueeItems + marqueeItems;
   }
 });
 
-
-// Remove image loading animation (FIX for flashing images)
-// The original code was:
-/*
-document.addEventListener("DOMContentLoaded", () => {
-  const images = document.querySelectorAll("img");
-  images.forEach((img) => {
-    img.addEventListener("load", () => {
-      img.style.opacity = "1";
-    });
-    img.style.opacity = "0"; // THIS WAS THE CULPRIT!
-    img.style.transition = "opacity 0.3s ease";
-  });
-});
-*/
-// This block is now removed from `DOMContentLoaded` event listener.
-// Images will load naturally without this JS intervention.
-
+// The image loading animation that caused flashing has been removed from this script.
+// Images will now display immediately as loaded by the browser.
 
 // Add CSS for ripple effect and enhanced form validation (already in your original script)
+// This inline style block is now only for additional dynamic styles
 const style = document.createElement("style");
 style.textContent = `
     .btn {
@@ -563,7 +538,5 @@ style.textContent = `
     body.loaded {
         opacity: 1;
     }
-
-    /* .reveal styles are moved to styles.css for better organization */
 `;
 document.head.appendChild(style);
