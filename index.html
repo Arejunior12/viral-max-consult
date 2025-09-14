@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viral Max Consult - Your Full-Service Digital Partner</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Restored Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Restored Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Orbitron:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Birthstone+Bounce:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="images/logo.jpg" alt="VMC Logo" class="logo-img">
+                <span class="logo-text">V M C</span>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#services" class="nav-link">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#testimonials" class="nav-link">Testimonials</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+
+            <div class="nav-controls">
+                <!-- Theme Toggle -->
+                <button class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+
+                <!-- Mobile Menu Toggle -->
+                <div class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <video autoplay muted loop class="hero-video">
+                <source src="video/bg_vid.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Viral Max Consult</h1>
+                <p class="hero-subtitle">Your Digital Partner | From Concept to Conversion</p>
+                <p class="hero-description">Transform your digital presence with our comprehensive suite of marketing,
+                    development, and creative services.</p>
+
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="scrollToSection('services')">
+                        <i class="fas fa-rocket"></i>
+                        Explore Our Services
+                    </button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('contact')">
+                        <i class="fas fa-phone"></i>
+                        Get Started
+                    </button>
+                </div>
+
+                <div class="contact-icons">
+                    <a href="tel:+2348105334937" class="contact-icon" title="Call Us">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                    <a href="https://wa.me/2348105334937" class="contact-icon" title="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="mailto:info@viralmaxconsult@gmail.com" class="contact-icon" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <img src="images/home.jpeg" alt="Viral Max Consult" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee Section -->
+    <div class="marquee-container">
+        <div class="marquee">
+            <div class="marquee-content">
+                <span class="marquee-item"><i class="fas fa-shield-alt"></i> Reliable</span>
+                <span class="marquee-item"><i class="fas fa-star"></i> Trusted</span>
+                <span class="marquee-item"><i class="fas fa-rocket"></i> Innovative</span>
+                <span class="marquee-item"><i class="fas fa-trophy"></i> Award-Winning</span>
+                <span class="marquee-item"><i class="fas fa-heart"></i> Client-Focused</span>
+                <span class="marquee-item"><i class="fas fa-chart-line"></i> Results-Driven</span>
+                <span class="marquee-item"><i class="fas fa-handshake"></i> Professional</span>
+                <span class="marquee-item"><i class="fas fa-lightning-bolt"></i> Fast</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Viral Max Consult</h2>
+                <p class="section-subtitle">Empowering businesses through innovative digital solutions</p>
+            </div>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Who We Are</h3>
+                    <p>At Viral Max Consult, we are passionate digital strategists, creative designers, and technical
+                        experts united by one mission: transforming your business vision into digital success. Founded
+                        on the principles of innovation, reliability, and client-centric service, we've helped hundreds
+                        of businesses across various industries achieve their digital goals.</p>
+
+                    <h3>Our Mission</h3>
+                    <p>To bridge the gap between traditional business practices and modern digital opportunities,
+                        providing comprehensive solutions that drive growth, enhance brand visibility, and maximize
+                        return on investment.</p>
+
+                    <h3>What Sets Us Apart</h3>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-users"></i>
+                            <h4>Expert Team</h4>
+                            <p>Certified professionals with years of industry experience</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-chart-bar"></i>
+                            <h4>Data-Driven</h4>
+                            <p>Every strategy backed by analytics and proven methodologies</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-clock"></i>
+                            <h4>24/7 Support</h4>
+                            <p>Round-the-clock assistance for all your digital needs</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">Comprehensive digital solutions tailored to your needs</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Social Media Marketing -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="images/social media.jpg">
+                    </div>
+                    <div class="service-header">
+                        <i class="fab fa-facebook service-icon"></i>
+                        <h3>Social Media Marketing & Growth</h3>
+                        <button class="expand-btn" onclick="toggleService(this)">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="service-content">
+                        <p>Build, manage, and grow your social presence, transforming followers into loyal customers.
+                        </p>
+                        <div class="service-items">
+                            <div class="service-item">
+                                <i class="fas fa-bullhorn"></i>
+                                <div>
+                                    <h4>Paid Social Media Advertising</h4>
+                                    <p>Data-driven ad campaigns on Facebook, Instagram, and TikTok for maximum ROAS</p>
+                                </div>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-seedling"></i>
+                                <div>
+                                    <h4>Organic Growth & Management</h4>
+                                    <p>Increase genuine followers and engagement through strategic content planning</p>
+                                </div>
+                            </div>
+                            <div class="service-item">
+                                <i class="fab fa-tiktok"></i>
+                                <div>
+                                    <h4>TikTok Account Opening</h4>
+                                    <p>Specialized content creation and trend-jacking strategies for viral growth</p>
+                                </div>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-search"></i>
+                                <div>
+                                    <h4>Social Media Audit & Strategy</h4>
+                                    <p>Comprehensive analysis with customized growth strategy document</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web & App Development -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="images/website.jpg">
+                    </div>
+                    <div class="service-header">
+                        <i class="fas fa-code service-icon"></i>
+                        <h3>Website & App Development</h3>
+                        <button class="expand-btn" onclick="toggleService(this)">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="service-content">
+                        <p>Fast, secure, and high-converting digital experiences as your online cornerstone.</p>
+                        <div class="service-items">
+                            <div class="service-item">
+                                <i class="fas fa-laptop-code"></i>
+                                <div>
+                                    <h4>Custom Website Development</h4>
+                                    <p>Responsive, modern websites built with UX and CRO optimization</p>
+                                </div>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-shopping-cart"></i>
+                                <div>
+                                    <h4>E-Commerce Solutions</h4>
+                                    <p>Full-scale online stores on Shopify or WooCommerce with payment integration</p>
+                                </div>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-mobile-alt"></i>
+                                <div>
+                                    <h4>Mobile App Development</h4>
+                                    <p>Cross-platform mobile applications to engage your audience on the go</p>
+                                </div>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-tools"></i>
+                                <div>
+                                    <h4>Website Maintenance & Support</h4>
+                                    <p>Ongoing updates, security patches, and technical support</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Creative & Design -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="images/design.png">
+                    </div>
+                    <div class="service-header">
+                        <i class="fas fa-palette service-icon"></i>
+                        <h3>Creative Arts & Design Studio</h3>
+                        <button class="expand-btn" onclick="toggleService(this)">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="service-content">
+                        <p>Compelling visuals that tell your brand's story and leave lasting impressions.</p>
+                        <div class="service-items">
+                            <div class="service-item">
+                                <i class="fas fa-trademark"></i>
+                                <div>
+                                    <h4>Branding & Identity</h4>
+                                    <p>Logo design, brand guides, and business materials for consistent recognition</p>
+                                </div>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-image"></i>
+                                <div>
+                                    <h4>Graphics Design</h4>
+                                    <p>Social media graphics, digital ads, infographics, and marketing collateral</p>
+                                </div>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-video"></i>
+                                <div>
+                                    <h4>Video Editing & Production</h4>
+                                    <p>Professional video editing, motion graphics, and animation services</p>
+                                </div>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-recycle"></i>
+                                <div>
+                                    <h4>Content Repurposing</h4>
+                                    <p>Transform long-form content into engaging short-form videos and graphics</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Digital Marketing -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="images/digital marketing.jpg">
+                    </div>
+                    <div class="service-header">
+                        <i class="fas fa-chart-line service-icon"></i>
+                        <h3>Digital Marketing Solutions</h3>
+                        <button class="expand-btn" onclick="toggleService(this)">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="service-content">
+                        <p>Holistic, data-driven strategies to increase visibility and drive sales.</p>
+                        <div class="service-items">
+                            <div class="service-item">
+                                <i class="fas fa-search"></i>
+                                <div>
+                                    <h4>Search Engine Optimization (SEO)</h4>
+                                    <p>On-page, technical, and local SEO to improve Google rankings</p>
+                                </div>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-envelope-open-text"></i>
+                                <div>
+                                    <h4>Email Marketing</h4>
+                                    <p>Effective campaigns, newsletters, and automated sequences</p>
+                                </div>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-pen-fancy"></i>
+                                <div>
+                                    <h4>Content Marketing Strategy</h4>
+                                    <p>Valuable content creation to attract and retain your audience</p>
+                                </div>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-chart-line"></i>
+                                <div>
+                                    <h4>Analytics & Performance Reporting</h4>
+                                    <p>Monthly reports with clear insights and KPIs to track ROI</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic Research -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="images/research.jpg">
+                    </div>
+                    <div class="service-header">
+                        <i class="fas fa-graduation-cap service-icon"></i>
+                        <h3>Academic Research & Project Support</h3>
+                        <button class="expand-btn" onclick="toggleService(this)">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="service-content">
+                        <p>Expert guidance for students and researchers to achieve academic excellence.</p>
+                        <div class="service-items">
+                            <div class="service-item">
+                                <i class="fas fa-project-diagram"></i>
+                                <div>
+                                    <h4>Final Year Project Assistance</h4>
+                                    <p>Complete support from topic selection to professional project writing</p>
+                                </div>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-book"></i>
+                                <div>
+                                    <h4>Thesis & Dissertation Support</h4>
+                                    <p>Guidance on structuring, analysis, editing, and formatting guidelines</p>
+                                </div>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-flask"></i>
+                                <div>
+                                    <h4>Lab Practicals & Scientific Write-ups</h4>
+                                    <p>Documentation of procedures, analysis, and scientific report creation</p>
+                                </div>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-lightbulb"></i>
+                                <div>
+                                    <h4>Research Proposals</h4>
+                                    <p>Compelling proposals for academic approval or grant applications</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real Estate Agencies & Property Management -->
+                <div class="service-card">
+                    <div>
+                        <div class="service-img">
+                            <img src="images/real estate.jpg">
+                        </div>
+                        <div class="service-header">
+                            <i class="fas fa-home service-icon"></i>
+                            <h3>Real Estate Agencies & Property Management</h3>
+                            <button class="expand-btn" onclick="toggleService(this)">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="service-content">
+                        <p>Comprehensive digital solutions for real estate professionals to showcase properties and
+                            manage clients effectively.</p>
+                        <div class="service-items">
+                            <div class="service-item">
+                                <i class="fas fa-building"></i>
+                                <div>
+                                    <h4>Property Listing Websites</h4>
+                                    <p>Custom real estate websites with advanced search, virtual tours, and lead
+                                        capture
+                                        systems</p>
+                                </div>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-camera"></i>
+                                <div>
+                                    <h4>Property Photography & Virtual Tours</h4>
+                                    <p>Professional property photography, 360° virtual tours, and drone footage
+                                        services
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-users-cog"></i>
+                                <div>
+                                    <h4>CRM & Lead Management</h4>
+                                    <p>Client relationship management systems to track leads, appointments, and
+                                        property
+                                        inquiries</p>
+                                </div>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-chart-area"></i>
+                                <div>
+                                    <h4>Real Estate Marketing Campaigns</h4>
+                                    <p>Targeted social media ads, email marketing, and SEO strategies for property
+                                        promotion</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What Our Clients Say</h2>
+                <p class="section-subtitle">Real results from real businesses</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Viral Max Consult transformed our online presence completely. Our social media engagement
+                            increased by 300% and our website conversions doubled within 3 months!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="images/testimonial1.jpg" alt="Sarah Johnson">
+                        <div>
+                            <h4>Sarah Johnson</h4>
+                            <span>CEO, TechStart Solutions</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Their academic research support was invaluable for my dissertation. Professional, thorough,
+                            and delivered exactly what I needed to graduate with honors."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="images/testimonial3.jpg" alt="Dr. Amara Okafor">
+                        <div>
+                            <h4>Dr. Amara Okafor</h4>
+                            <span>PhD Graduate, University of Lagos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Outstanding creative work! Their branding and design services gave our company a fresh,
+                            professional look that our customers love. Highly recommended!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="images/testimonial4.jpg" alt="James Rodriguez">
+                        <div>
+                            <h4>James Rodriguez</h4>
+                            <span>Marketing Director, Global Ventures</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Ready to transform your digital presence? Let's talk!</p>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <a href="tel:+2349079452881" class="contact-link" target="_blank">
+                                <i class="fas fa-phone"></i>
+                                <span>+2348105334937</span>
+                            </a>
+                        </div>
+                        <div class="contact-item">
+                            <a href="https://wa.me/2348105334937" class="contact-link" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                                <span>WhatsApp</span>
+                            </a>
+                        </div>
+                        <div class="contact-item">
+                            <a href="mailto:info@viralmaxconsult@gmail.com" class="contact-link" target="_blank">
+                                <i class="fas fa-envelope"></i>
+                                <span>info@viralmaxconsult.com</span>
+                            </a>
+                        </div>
+                        <div class="contact-item">
+                            <a href="https://t.me/viralmaxconsult" class="contact-link" target="_blank">
+                                <i class="fab fa-telegram"></i>
+                                <span>@viralmaxconsult</span>
+                            </a>
+                        </div>
+                        <div class="contact-item">
+                            <a href="https://www.facebook.com/share/17bb93cCmK/" class="contact-link" target="_blank">
+                                <i class="fab fa-facebook"></i>
+                                <span>Viral Max Consult</span>
+                            </a>
+                        </div>
+                        <div class="contact-item">
+                            <a href="https://www.facebook.com/share/17bb93cCmK/" class="contact-link" target="_blank">
+                                <i class="fab fa-instagram"></i>
+                                <span>@viralmaxconsult</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="address">
+                        <h4><i class="fas fa-map-marker-alt"></i> Address</h4>
+                        <p>84 Christ Idowu Street, Ori-Oke, Ejigbo<br>Lagos, Nigeria</p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="contactForm" action="https://formspree.io/f/mpwjnkja" method="POST">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder="Your Phone Number">
+                        </div>
+                        <div class="form-group">
+                            <select id="service" name="service" required>
+                                <option value="">Select a Service</option>
+                                <option value="social-media">Social Media Marketing</option>
+                                <option value="web-development">Web & App Development</option>
+                                <option value="creative-design">Creative & Design</option>
+                                <option value="digital-marketing">Digital Marketing</option>
+                                <option value="academic-research">Academic Research</option>
+                                <option value="consultation">General Consultation</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Tell us about your project..." rows="5"
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span>Viral Max Consult</span>
+                    </div>
+                    <p>Your Full-Service Digital Partner | From Concept to Conversion</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/17bb93cCmK/" target="_blank"><i
+                                class="fab fa-facebook"></i></a>
+                        <a href="https://www.facebook.com/share/17bb93cCmK/" target="_blank"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://t.me/viralmaxconsult" target="_blank"><i class="fab fa-telegram"></i></a>
+                        <a href="https://wa.me/2348105334937" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Social Media Marketing</a></li>
+                        <li><a href="#services">Web Development</a></li>
+                        <li><a href="#services">Creative Design</a></li>
+                        <li><a href="#services">Digital Marketing</a></li>
+                        <li><a href="#services">Academic Research</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> +2348105334937</p>
+                        <p><i class="fas fa-envelope"></i> info@viralmaxconsult.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Lagos, Nigeria</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <marquee>
+                    <p><b>&copy; 2025 Viral Max Consult. All rights reserved.</b></p>
+                </marquee>
+                <button class="back-to-top" id="backToTop">
+                    <i class="fas fa-arrow-up"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
