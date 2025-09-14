@@ -89,8 +89,8 @@ body {
   font-weight: 700;
   font-size: 1.25rem;
   color: orange;
-  position: relative; /* Ensure logo is above mobile menu when open */
-  z-index: 1001; /* Higher than nav-menu */
+  position: relative;
+  z-index: 1001;
 }
 
 .logo-img {
@@ -123,7 +123,6 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  /* background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent); */
   background: transparent; /* Removed the gradient */
   transition: left 0.5s;
 }
@@ -157,9 +156,8 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
-  /* Added for mobile positioning */
   position: relative;
-  z-index: 1001; /* Ensure controls are above mobile menu */
+  z-index: 1001;
 }
 
 .theme-toggle {
@@ -191,16 +189,35 @@ body {
     font-size: 1.2rem;
 }
 
-/* 4. Corrected hamburger and theme toggle overlapping */
+/* 4. Corrected hamburger and theme toggle overlapping and added new styling */
 .hamburger {
-  display: none; /* Hidden on desktop */
+  display: none; /* Hidden on desktop, shown on mobile via media query */
   flex-direction: column;
   cursor: pointer;
   gap: 4px;
-  /* Removed fixed positioning, let it flow with nav-controls */
-  /* This will be managed by flexbox within .nav-controls */
   z-index: 1000;
+
+  /* New styles for size, border, and background */
+  width: 40px;
+  height: 40px;
+  border: 2px solid gold; /* Gold border */
+  border-radius: 8px; /* Slightly rounded corners */
+  align-items: center; /* Center bars horizontally */
+  justify-content: center; /* Center bars vertically */
+  background: var(--surface); /* Match theme toggle background */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow */
+  transition: var(--transition-fast);
 }
+[data-theme="dark"] .hamburger {
+    background: var(--background);
+}
+
+.hamburger:hover {
+    border-color: var(--primary-color); /* Hover effect for border */
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
 
 .bar {
   width: 25px;
@@ -431,7 +448,7 @@ body {
     
     .hero-text {
         padding-right: 0;
-        margin-bottom: 2rem; /* Move margin to top of text from bottom of image */
+        margin-bottom: 2rem; /* Spacing below text */
         order: 1; /* Place text after image */
     }
     
@@ -754,60 +771,66 @@ section {
   color: var(--text-secondary);
 }
 
-.service-items {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-
+/* Service Item with new button */
 .service-item {
   display: flex;
-  align-items: flex-start;
-  gap: 1rem;
+  align-items: center; /* Changed from flex-start to center for vertical alignment with button */
+  justify-content: space-between; /* To push the button to the right */
+  gap: 0.8rem; /* Adjusted gap to accommodate button */
   padding: 1rem;
   background: var(--surface);
   border-radius: 10px;
   transition: var(--transition-fast);
-  max-width: 400px;
-}
-.service-item:hover {
-    background: var(--accent-color);
-    color: white;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(37, 99, 235, 0.2);
 }
 
-.service-item i {
-  font-size: 1.5rem;
-  color: var(--primary-color);
-  margin-top: 0.25rem;
-  transition: var(--transition-fast);
+/* New: Wrapper for the text content within service-item */
+.service-item-content-wrapper {
+  flex-grow: 1; /* Allows this wrapper to take up available space */
+  margin-right: 0.5rem; /* Small space before the button */
 }
 
-.service-item:hover i {
+/* Adjust spacing for text within the new wrapper */
+.service-item-content-wrapper h4 {
+  margin-bottom: 0.25rem; /* Reduce bottom margin */
+}
+
+.service-item-content-wrapper p {
+  margin: 0; /* Ensure no extra margin */
+}
+
+/* New: Style for the "Get Quote" buttons */
+.btn-small {
+  padding: 0.6rem 1.2rem; /* Smaller padding */
+  font-size: 0.85rem; /* Smaller font size */
+  border-radius: 25px; /* More rounded corners */
+  flex-shrink: 0; /* Prevent the button from shrinking on small screens */
+  white-space: nowrap; /* Keep button text on a single line */
+  background: var(--accent-color); /* Use accent color for these buttons */
   color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
 }
 
-.service-item h4 {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-  color: var(--text-primary);
-  transition: var(--transition-fast);
+.btn-small:hover {
+  background: var(--secondary-color); /* Darker blue on hover */
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
 }
 
-.service-item:hover h4 {
-  color: white;
+/* Ensure icons maintain their size/color within new button */
+.btn-small i {
+    font-size: 0.9em; /* Adjust icon size relative to button text */
+    margin-right: 0.4rem;
 }
 
-.service-item p {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  margin: 0;
-  transition: var(--transition-fast);
+/* Dark theme adjustments for the new button */
+[data-theme="dark"] .btn-small {
+  background: var(--primary-color);
+  box-shadow: 0 2px 5px rgba(255,255,255,0.05);
 }
-
-.service-item:hover p {
-  color: rgba(255, 255, 255, 0.9);
+[data-theme="dark"] .btn-small:hover {
+  background: var(--accent-color);
+  box-shadow: 0 5px 10px rgba(255,255,255,0.1);
 }
 
 /* Testimonials Section */
@@ -1038,8 +1061,8 @@ section {
 .footer {
   background: var(--text-primary);
   color: rgba(10, 10, 10, 0.8);
-  padding: 3rem 0 1rem;
   font-weight: bold;
+  padding: 3rem 0 1rem;
 }
 
 .footer-content {
@@ -1054,7 +1077,6 @@ section {
   align-items: center;
   gap: 0.75rem;
   font-family: var(--font-logo);
-  color: chocolate;
   font-weight: 700;
   font-size: 1.25rem;
   margin-bottom: 1rem;
@@ -1194,7 +1216,7 @@ section {
     flex-direction: column;
     background-color: var(--background);
     width: 75%; /* Take 75% of screen width */
-    max-width: 300px; /* Optional: cap maximum width */
+    max-width: 300px; /* Optional: cap maximum width for larger mobiles */
     height: 100vh; /* Full viewport height */
     text-align: left; /* Align text within the side menu */
     transition: right 0.3s ease-in-out; /* Slide in/out animation */
@@ -1230,7 +1252,6 @@ section {
   /* 4. Corrected hamburger and theme toggle overlapping */
   .hamburger {
     display: flex; /* Show hamburger on mobile */
-    /* No fixed positioning, it's now part of .nav-controls */
   }
   /* On mobile, ensure theme toggle button is also visible and correctly spaced */
   .nav-controls {
@@ -1239,6 +1260,24 @@ section {
       gap: 1rem;
   }
   /* This ensures both elements within nav-controls are side-by-side */
+
+  /* Media query to stack button on very small screens if necessary for service items */
+  .service-item {
+    flex-wrap: wrap; /* Allow items to wrap */
+    justify-content: flex-start; /* Align to start when wrapped */
+    gap: 0.5rem;
+  }
+  .service-item-content-wrapper {
+    flex-basis: 100%; /* Text takes full width when wrapped */
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+  .service-item .btn-small {
+    width: 100%; /* Button takes full width when wrapped */
+    text-align: center;
+    justify-content: center; /* Center content within button */
+    padding: 0.8rem 1.2rem;
+  }
 
 
   /* Hero animations are managed by JS reveal */

@@ -218,6 +218,16 @@ window.addEventListener("scroll", () => {
   toggleBackToTopButton();
 });
 
+// NEW: Function to handle service selection and scroll to form
+function selectServiceInForm(serviceValue) {
+  const serviceSelect = document.getElementById('service');
+  if (serviceSelect) {
+    serviceSelect.value = serviceValue;
+    // Scroll to the contact form section
+    scrollToSection('contact');
+  }
+}
+
 // Initialize on page load
 document.addEventListener("DOMContentLoaded", () => {
   updateActiveNavLink();
@@ -247,6 +257,14 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileGestures();
 
   document.body.classList.add("loaded");
+
+  // NEW: Add event listeners for the new "Get Quote" buttons
+  document.querySelectorAll('.select-service-btn').forEach(button => {
+    button.addEventListener('click', (event) => {
+      const mainService = event.currentTarget.dataset.mainService;
+      selectServiceInForm(mainService);
+    });
+  });
 });
 
 // Enhanced scroll reveal animation
@@ -388,7 +406,7 @@ function initFloatingAnimation() {
       heroImg.style.transform = `translate(${mouseX * 10}px, ${mouseY * 10}px)`;
     });
   } else if (heroImg) { // Reset on mobile
-      heroImg.style.transform = `translateY(0px)`; // Ensure no residual transform
+      heroImg.style.transform = `translateY(0px)`;
   }
 }
 
@@ -461,7 +479,7 @@ function initMobileGestures() {
     // Only consider horizontal swipes that start near the top (e.g., within navbar height)
     if (Math.abs(diffY) < 50 && startY < (navbarHeight + 50)) {
       // Swipe right to open menu
-      if (diffX < -50 && diffX > -300) { // Added a max swipe distance check
+      if (diffX < -50 && diffX > -300) {
         if (window.innerWidth <= 768 && !navMenu.classList.contains("active")) {
           navMenu.classList.add("active");
           hamburger.classList.add("active");
@@ -469,7 +487,7 @@ function initMobileGestures() {
       }
 
       // Swipe left to close menu
-      if (diffX > 50 && diffX < 300) { // Added a max swipe distance check
+      if (diffX > 50 && diffX < 300) {
         if (window.innerWidth <= 768 && navMenu.classList.contains("active")) {
           navMenu.classList.remove("active");
           hamburger.classList.remove("active");
@@ -488,11 +506,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// The image loading animation that caused flashing has been removed from this script.
-// Images will now display immediately as loaded by the browser.
-
-// Add CSS for ripple effect and enhanced form validation (already in your original script)
-// This inline style block is now only for additional dynamic styles
 const style = document.createElement("style");
 style.textContent = `
     .btn {
